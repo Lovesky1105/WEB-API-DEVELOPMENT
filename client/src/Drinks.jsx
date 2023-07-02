@@ -7,13 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 function Drinks() {
 
-  var drinkVar = "vodka";
+  //var drinkVar = "vodka";
 
-  const [records, setRecords] = useState([]);
 
-   
-
-  const drinksQuery = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drinkVar}`;
+  const drinksQuery = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${favDrinks}`;
 
   useEffect(() => {
     fetch(drinksQuery)

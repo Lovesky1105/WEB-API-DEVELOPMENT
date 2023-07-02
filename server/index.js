@@ -8,9 +8,9 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-
-
 const mongoUrl = "mongodb+srv://p20012535:Tengteng8132002@gettingstarted.6yl4h3h.mongodb.net/5014CEM";
+
+
 
 mongoose.connect(mongoUrl);
 
@@ -30,6 +30,13 @@ app.post("/login", (req, res) =>{
         
     })
 })
+
+app.put('/update',(req, res)=>{
+    userFavModel.create(req.body)
+    .then(web_apis => res.json(web_apis))
+    .catch(err => res.json(err))
+})
+
 
 app.post('/home',(req, res)=>{
     userFavModel.create(req.body)

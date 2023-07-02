@@ -6,6 +6,7 @@ import Home from './Home'
 import Drinks from './Drinks'
 import Food from './Food'
 import Recipe from './Recipe'
+import Update from './Update'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 function App() {
@@ -16,10 +17,11 @@ function App() {
     <Routes>
       <Route path='/register' element={<Signup />}></Route>
       <Route path='/login' element={<Login />}></Route>
-      <Route path='/home' element={<Home />}></Route>
-      <Route path='/drinks' element={<Drinks />}></Route>
-      <Route path='/food' element={<Food />}></Route>
+      <Route path='/home/:email' element={<Home />}></Route>
+      <Route path='/drinks/:email/:favFood/:favDrinks' element={<Drinks />}></Route>
+      <Route path='/food/:email/:favFood/:favDrinks' element={<Food />}></Route>
       <Route path='/recipe' element={<Recipe />}></Route>
+      <Route path='/update/:email/:favFood/:favDrinks' element={<Update />}></Route>
     </Routes>
     </BrowserRouter>
   )

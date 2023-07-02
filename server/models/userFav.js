@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 
 const UserFavSchema = new mongoose.Schema({
         favFood:String,
-        favDrinks:String
+        favDrinks:String,
+        email:String
         
 
     })

@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'
 import axios from 'axios'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom"; 
 
 function Food() {
+  const { email } = useParams(); 
+  const { favDrinks } = useParams(); 
 
-  var food = "chicken";
+  const { favFood } = useParams(); 
+  //const food = "chicken";
 
-  const recipeQueryUrl = `https://www.themealdb.com/api/json/v1/1/search.php?s=${food}`;
+  const recipeQueryUrl = `https://www.themealdb.com/api/json/v1/1/search.php?s=${favFood}`;
 
   const [records, setRecords] = useState([]);
 
@@ -19,6 +22,17 @@ function Food() {
       .catch(err => console.log(err));
   }, []);
 
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   axios.post('http://localhost:3001/home', { favFood, favDrinks })
+  //     .then(result => {
+  //       console.log(result);
+  //       setSubmitted(true);
+  //       //navigate("/food");
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
   return (
     <div>
@@ -35,16 +49,44 @@ function Food() {
     </div>
     
     <div className='App'>
-        <h1>Food</h1>
-        <ul>
+    <p>Your favorite food: {favFood}</p>
+            <ul>
         {records.map((food, index) => (
           <li key={index}>
-            {food.strMeal} | {food.strArea} | {food.strInstructions}
+            <table >
+              <tr>
+                <td>
+                  {food.strMeal} 
+                </td>
+                </tr>
+
+                <tr>
+                <td>
+                  {food.strArea} 
+                </td>
+                </tr>
+
+                <tr>
+                <td>
+                  {food.strInstructions} 
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <Link to={`/update/${email}/${food.strMeal}/${favDrinks}`}>
+                    Update
+                    </Link>
+                </td>
+              </tr>
+
+
+
+            </table>
           </li>
         ))}
       </ul>
-    </div>
-    
+      </div>
     </div>
   )
 }
