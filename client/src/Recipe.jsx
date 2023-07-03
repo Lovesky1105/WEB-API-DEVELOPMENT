@@ -1,22 +1,24 @@
-import './App.css'
-import { Link } from "react-router-dom"; 
-import axios from 'axios'
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import './App.css'
+import axios from 'axios'
+import { useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom"; 
 
 
 function Recipe() {
+  const { email } = useParams(); 
+  const { favDrinks } = useParams(); 
+  const { favFood } = useParams(); 
+  const { favRecipe } = useParams(); 
 
-  const edamamAppId = '6f5d7e13';
-  const edamamAppKey = 'bf25f92c6194a2eab0d58d5027401859';
-  const recipeQuery = 'chicken';
-  
-  const recipeQueryUrl = `https://api.edamam.com/searchq=${recipeQuery}&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
+    const api_url = `https://forkify-api.herokuapp.com/api/search?q=${favRecipe}`;
+    const [records, setRecords] = useState([]);
+    
 
   useEffect(() => {
-    fetch(recipeQueryUrl)
+    fetch(api_url)
       .then(response => response.json())
-      .then(data => setRecords(data.drinks)) // Extract drinks array from the response
+      .then(data => setRecords(data.recipes)) // Extract drinks array from the response
       .catch(err => console.log(err));
   }, []);
 
@@ -26,7 +28,7 @@ function Recipe() {
     <div className="navbar-logo">
    
          <ul className='navbar-menu'>
-         <li><Link to="/home">Home</Link></li>
+         <li><Link to="/home/:email">Home</Link></li>
          <li><Link to="/drinks">Drinks</Link></li>
          <li><Link to="/recipe">Recipe</Link></li>
          <li><Link to="/food">Food</Link></li>
@@ -37,9 +39,19 @@ function Recipe() {
     <div className='App'>
     <h1>Recipe</h1>
     <ul>
-        {records.map((recipe, index) => (
+        {records.map((recipes, index) => (
           <li key={index}>
-            {recipe.idDrink} | {recipe.strDrink}
+            <table>
+              <tr><td>{recipes.title}</td></tr>
+              <tr><td>{recipes.source_url}</td></tr>
+              <tr>
+              <td>
+                <Link to={`/updateRecipe/${email}/${favFood}/${favDrinks}/${favRecipe}`}>
+                  Update
+                  </Link>
+              </td>
+              </tr>
+              </table>
           </li>
         ))}
       </ul>

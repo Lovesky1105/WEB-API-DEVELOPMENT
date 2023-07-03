@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'
-import { Link } from "react-router-dom"; 
 import axios from 'axios'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom"; 
 
 
 function Drinks() {
+  const { email } = useParams(); 
+  const { favDrinks } = useParams(); 
+  const { favFood } = useParams(); 
+  const { favRecipe } = useParams(); 
 
   //var drinkVar = "vodka";
 
 
   const drinksQuery = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${favDrinks}`;
+
+  const [records, setRecords] = useState([]);
 
   useEffect(() => {
     fetch(drinksQuery)
@@ -26,24 +32,41 @@ function Drinks() {
     <div className='navBar'>
     <div className="navbar-logo">
    
-         <ul className='navbar-menu'>
-         <li><Link to="/home">Home</Link></li>
-         <li><Link to="/drinks">Drinks</Link></li>
-         <li><Link to="/recipe">Recipe</Link></li>
-         <li><Link to="/food">Food</Link></li>
+    <ul className='navbar-menu'>
+         <li><Link to="/home/:email">Home</Link></li>
+         <li><Link to="/drinks/:email/:favFood/:favDrinks/:favRecipe">Drinks</Link></li>
+         <li><Link to="/recipe/:email/:favFood/:favDrinks/:favRecipe">Recipe</Link></li>
+         <li><Link to="/food/:email/:favFood/:favDrinks/:favRecipe">Food</Link></li>
          </ul>
     </div>
     </div>
     
     <div className='App'>
     <h1>Drinks</h1>
-    <ul>
+    <p>Your favorite drinks: {favDrinks}</p>
+            <ul>
         {records.map((drink, index) => (
           <li key={index}>
-            {drink.strDrink} | {drink.strCategory} | {drink.strInstructions}
+            <table>
+              <tr><td>{drink.strDrink}</td></tr>
+                <tr><td>{drink.strCategory}</td></tr>
+                <tr><td>{drink.strInstructions}</td></tr>
+
+                <tr>
+                <td>
+                  <Link to={`/updateDrinks/${email}/${favFood}/${favDrinks}/${favRecipe}`}>
+                    Update
+                    </Link>
+                </td>
+              </tr>
+              
+            </table>
+            
           </li>
+
         ))}
       </ul>
+
     </div>
     
     </div>

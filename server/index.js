@@ -31,11 +31,30 @@ app.post("/login", (req, res) =>{
     })
 })
 
-app.put('/update',(req, res)=>{
-    userFavModel.create(req.body)
-    .then(web_apis => res.json(web_apis))
-    .catch(err => res.json(err))
-})
+app.put('/update', async (req, res) => {
+    const email = req.body.email; // Assuming email is provided in the request body
+    const updatedData = req.body;
+  
+    try {
+      // Update the data in your database based on the provided email
+      await userFavModel.findOneAndUpdate({ email }, updatedData);
+  
+      res.json({ message: 'Data updated successfully' });
+    } catch (error) {
+      console.error('Failed to update data:', error);
+      res.status(500).json({ error: 'Failed to update data' });
+    }
+  });
+
+  app.delete('/delete', (req, res) => {
+    userFavModel.deleteMany({})
+      .then(() => {
+        res.sendStatus(204); // Send a success response
+      })
+      .catch((err) => {
+        res.status(500).json({ error: 'Error deleting rows', details: err });
+      });
+  });
 
 
 app.post('/home',(req, res)=>{

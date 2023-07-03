@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 function Home(props) {
   const [favFood, setFavFood] = useState('');
   const [favDrinks, setFavDrinks] = useState('');
+  const [favRecipe, setFavRecipe] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const navigate  = useNavigate();
   const { email } = useParams(); 
@@ -14,41 +15,14 @@ function Home(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/home', { favFood, favDrinks, email})
+    axios.post('http://localhost:3001/home', { favFood, favDrinks, email, favRecipe})
       .then(result => {
         console.log(result);
         setSubmitted(true);
-        navigate(`/food/${email}/${favFood}/${favDrinks}`);
+        navigate(`/food/${email}/${favFood}/${favDrinks}/${favRecipe}`);
       })
       .catch(err => console.log(err));
   };
-
-      //food api
-        // const recipeQueryUrl = `https://www.themealdb.com/api/json/v1/1/search.php?s=${favFood}`;
-
-        // const [records1, setRecords1] = useState([]);
-
-        // useEffect(() => {
-        //   fetch(recipeQueryUrl)
-        //     .then(response1 => response1.json())
-        //     .then(data1 => setRecords1(data1.meals)) // Extract drinks array from the response,  meals is the term from  api
-        //     .catch(err1 => console.log(err1));
-        // }, []);
-        // end food api
-
-        //drinks api
-        // const drinksQuery = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${favDrinks}`;
-
-        // const [records2, setRecords2] = useState([]);
-
-        // useEffect(() => {
-        //   fetch(drinksQuery)
-        //     .then(response => response.json())
-        //     .then(data => setRecords2(data.drinks)) // Extract drinks array from the response
-        //     .catch(err => console.log(err));
-        // }, []);
-        // end drinks api
-
 
 
 
@@ -56,12 +30,12 @@ function Home(props) {
     <div>
       <div className='navBar'>
         <div className="navbar-logo">
-          <ul className='navbar-menu'>
-            <li><Link to="/home">Home</Link></li>
-            <li><Link to="/drinks">Drinks</Link></li>
-            <li><Link to="/recipe">Recipe</Link></li>
-            <li><Link to="/food">Food</Link></li>
-          </ul>
+        <ul className='navbar-menu'>
+         <li><Link to="/home/:email">Home</Link></li>
+         <li><Link to="/drinks/:email/:favFood/:favDrinks/:favRecipe">Drinks</Link></li>
+         <li><Link to="/recipe/:email/:favFood/:favDrinks/:favRecipe">Recipe</Link></li>
+         <li><Link to="/food/:email/:favFood/:favDrinks/:favRecipe">Food</Link></li>
+         </ul>
         </div>
       </div>
     
@@ -99,6 +73,22 @@ function Home(props) {
                 onChange={(e) => setFavDrinks(e.target.value)}
               />
             </div>
+
+            <div className='mb-3'>
+              <label htmlFor='favRecipe'>
+                <strong>Your favorite food recipe</strong>
+              </label>
+              <input
+                type="text"
+                placeholder='Enter your favorite Recipe'
+                autoComplete='off'
+                name='favRecipe'
+                className='form-control rounded-0'
+                value={favRecipe}
+                onChange={(e) => setFavRecipe(e.target.value)}
+              />
+            </div>
+
             <button type='submit' className='btn btn-success w-100 rounded-0'>
               Submit
             </button>

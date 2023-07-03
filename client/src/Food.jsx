@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 function Food() {
   const { email } = useParams(); 
   const { favDrinks } = useParams(); 
-
   const { favFood } = useParams(); 
+  const { favRecipe } = useParams(); 
   //const food = "chicken";
 
   const recipeQueryUrl = `https://www.themealdb.com/api/json/v1/1/search.php?s=${favFood}`;
@@ -39,11 +39,11 @@ function Food() {
     <div className='navBar'>
     <div className="navbar-logo">
    
-         <ul className='navbar-menu'>
-         <li><Link to="/home">Home</Link></li>
-         <li><Link to="/drinks">Drinks</Link></li>
-         <li><Link to="/recipe">Recipe</Link></li>
-         <li><Link to="/food">Food</Link></li>
+    <ul className='navbar-menu'>
+         <li><Link to="/home/:email">Home</Link></li>
+         <li><Link to="/drinks/:email/:favFood/:favDrinks">Drinks</Link></li>
+         <li><Link to="/recipe/:email/:favFood/:favDrinks">Recipe</Link></li>
+         <li><Link to="/food/:email/:favFood/:favDrinks">Food</Link></li>
          </ul>
     </div>
     </div>
@@ -74,7 +74,7 @@ function Food() {
 
               <tr>
                 <td>
-                  <Link to={`/update/${email}/${food.strMeal}/${favDrinks}`}>
+                  <Link to={`/update/${email}/${food.strMeal}/${favDrinks}/${favRecipe}`}>
                     Update
                     </Link>
                 </td>

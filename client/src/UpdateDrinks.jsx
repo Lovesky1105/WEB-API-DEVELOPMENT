@@ -4,12 +4,11 @@ import axios from 'axios'
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom"; 
 
-function Update() {
+function UpdateDrinks() {
   const { email } = useParams(); 
   const { favFood } = useParams(); 
   const { favDrinks } = useParams(); 
   const { favRecipe } = useParams(); 
-  
 
   const food = favFood;
   const drink = favDrinks;
@@ -41,7 +40,7 @@ function Update() {
     updateData(email, updatedData)
       .then(updatedData => {
         console.log('Data updated successfully:', updatedData);
-        navigate(`/drinks/${email}/${favFood}/${favDrinks}/${favRecipe}`);
+        navigate(`/recipe/${email}/${favFood}/${favDrinks}/${favRecipe}`);
         // Handle the updated data as needed
       })
       .catch(error => {
@@ -80,4 +79,4 @@ function Update() {
   );
 }
 
-export default Update;
+export default UpdateDrinks;
