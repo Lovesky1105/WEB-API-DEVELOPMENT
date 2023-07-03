@@ -41,9 +41,9 @@ function Food() {
    
     <ul className='navbar-menu'>
          <li><Link to="/home/:email">Home</Link></li>
-         <li><Link to="/drinks/:email/:favFood/:favDrinks">Drinks</Link></li>
-         <li><Link to="/recipe/:email/:favFood/:favDrinks">Recipe</Link></li>
-         <li><Link to="/food/:email/:favFood/:favDrinks">Food</Link></li>
+         <li><Link to="/drinks/:email/:favFood/:favDrinks/:favRecipe">Drinks</Link></li>
+         <li><Link to="/recipe/:email/:favFood/:favDrinks/:favRecipe">Recipe</Link></li>
+         <li><Link to="/food/:email/:favFood/:favDrinks/:favRecipe">Food</Link></li>
          </ul>
     </div>
     </div>

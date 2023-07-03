@@ -15,7 +15,7 @@ function Home(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/home', { favFood, favDrinks, email, favRecipe})
+    axios.post('http://localhost:3001/home', { favFood, favDrinks, email, favRecipe })
       .then(result => {
         console.log(result);
         setSubmitted(true);
@@ -24,7 +24,7 @@ function Home(props) {
       .catch(err => console.log(err));
   };
 
-
+ 
 
   return (
     <div>

@@ -19,7 +19,7 @@ function UpdateRecipe() {
 
     const updateData = async (email, updatedData) => {
         try {
-        const response = await axios.put(`http://localhost:3001/update`, updatedData);
+        const response = await axios.put(`http://localhost:3001/updateRecipe`, updatedData);
         return response.data;
         } catch (error) {
         console.error('Failed to update data:', error);
@@ -40,7 +40,7 @@ function UpdateRecipe() {
         updateData(email, updatedData)
           .then(updatedData => {
             console.log('Data updated successfully:', updatedData);
-            //navigate(`/recipe/${email}/${favFood}/${favDrinks}/${favRecipe}`);
+            navigate(`/delete/${email}/`);
             // Handle the updated data as needed
           })
           .catch(error => {

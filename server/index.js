@@ -46,6 +46,36 @@ app.put('/update', async (req, res) => {
     }
   });
 
+  app.put('/updateDrinks', async (req, res) => {
+    const email = req.body.email; // Assuming email is provided in the request body
+    const updatedData = { favDrinks: req.body.favDrinks }; // Only update the favDrinks field
+    
+    try {
+      // Update the data in your database based on the provided email
+      await userFavModel.findOneAndUpdate({ email }, updatedData);
+  
+      res.json({ message: 'Data updated successfully' });
+    } catch (error) {
+      console.error('Failed to update data:', error);
+      res.status(500).json({ error: 'Failed to update data' });
+    }
+  });
+  
+  app.put('/updateRecipe', async (req, res) => {
+    const email = req.body.email; // Assuming email is provided in the request body
+    const updatedData = { favRecipe: req.body.favRecipe }; // Only update the recipe field
+  
+    try {
+      // Update the data in your database based on the provided email
+      await userFavModel.findOneAndUpdate({ email }, updatedData);
+  
+      res.json({ message: 'Data updated successfully' });
+    } catch (error) {
+      console.error('Failed to update data:', error);
+      res.status(500).json({ error: 'Failed to update data' });
+    }
+  });
+
   app.delete('/delete', (req, res) => {
     userFavModel.deleteMany({})
       .then(() => {

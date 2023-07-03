@@ -12,6 +12,7 @@ function Recipe() {
   const { favRecipe } = useParams(); 
 
     const api_url = `https://forkify-api.herokuapp.com/api/search?q=${favRecipe}`;
+    
     const [records, setRecords] = useState([]);
     
 
@@ -46,7 +47,7 @@ function Recipe() {
               <tr><td>{recipes.source_url}</td></tr>
               <tr>
               <td>
-                <Link to={`/updateRecipe/${email}/${favFood}/${favDrinks}/${favRecipe}`}>
+                <Link to={`/updateRecipe/${email}/${favFood}/${favDrinks}/${recipes.title}`}>
                   Update
                   </Link>
               </td>
