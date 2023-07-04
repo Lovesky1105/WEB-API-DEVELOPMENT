@@ -27,7 +27,7 @@ function App() {
       <Route path='/updateDrinks/:email/:favFood/:favDrinks/:favRecipe' element={<UpdateDrinks />}></Route>
       <Route path='/recipe/:email/:favFood/:favDrinks/:favRecipe' element={<Recipe />}></Route>
       <Route path='/updateRecipe/:email/:favFood/:favDrinks/:favRecipe' element={<UpdateRecipe />}></Route>
-      <Route path='/delete/:email' element={<Delete />} />
+      <Route path='/delete/:email/:favFood/:favDrinks/:favRecipe' element={<Delete />} />
     </Routes>
     </BrowserRouter>
   )

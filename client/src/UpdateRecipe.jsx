@@ -40,7 +40,7 @@ function UpdateRecipe() {
         updateData(email, updatedData)
           .then(updatedData => {
             console.log('Data updated successfully:', updatedData);
-            navigate(`/delete/${email}/`);
+            navigate(`/delete/${email}/${favFood}/${favDrinks}/${favRecipe}/`);
             // Handle the updated data as needed
           })
           .catch(error => {

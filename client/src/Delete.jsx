@@ -41,6 +41,12 @@ function Delete() {
         {submitted ? (
           <div>
             <p>Your favorite food, favorite drinks and recipe has been deleted! </p>
+            <button className="btn btn-outline-primary">
+                  <Link to={`/login`}>
+                    Log out
+                    </Link>
+
+                  </button>
           </div>
         ) : (
           <form onSubmit={handleSubmit}>
