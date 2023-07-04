@@ -65,7 +65,7 @@ function UpdateDrinks() {
     </div>
 
       <form onSubmit={handleSubmit}>
-        <h2>Submitted Values:</h2>
+        <h2>Update Drinks:</h2>
         <p>Your email: {email}</p>
         <p>Your favFood: {favFood}</p>
         <p>Your favDrinks: {favDrinks}</p>

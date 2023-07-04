@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 function Delete() {
-  const [favFood, setFavFood] = useState('');
-  const [favDrinks, setFavDrinks] = useState('');
+  // const [favFood, setFavFood] = useState('');
+  // const [favDrinks, setFavDrinks] = useState('');
+  const { email } = useParams(); 
+  const { favDrinks } = useParams(); 
+  const { favFood } = useParams(); 
+  const { favRecipe } = useParams(); 
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
@@ -34,7 +38,6 @@ function Delete() {
 
       <div className='App'>
         <h1>Delete</h1>
-
         {submitted ? (
           <div>
             <p>Your favorite food, favorite drinks and recipe has been deleted! </p>
@@ -42,6 +45,11 @@ function Delete() {
         ) : (
           <form onSubmit={handleSubmit}>
             <div className='mb-3'>
+              <p>Your email: {email}</p>
+        <p>Your favFood: {favFood}</p>
+        <p>Your favDrinks: {favDrinks}</p>
+        <p>Your favFoodRecipe: {favRecipe}</p>
+        <p>Are you sure you want to delete ?</p>
               <button onClick={handleSubmit}  className='btn btn-success w-100 rounded-0'>
                 Delete
               </button>

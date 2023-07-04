@@ -49,16 +49,19 @@ function Drinks() {
         <ul>
           {records.map((drinks, index) => (
             <li key={index}>
-              <table>
-                <tr><td>{drinks.strDrink}</td></tr>
-                <tr><td>{drinks.strCategory}</td></tr>
-                <tr><td>{drinks.strInstructions}</td></tr>
+              <table className='table'>
+                <tr className="row"><td>{"Name : " + drinks.strDrink}</td></tr>
+                <tr className="row"><td>{"Category : " + drinks.strCategory}</td></tr>
+                <tr className="row"><td>{"Instruction : " + drinks.strInstructions}</td></tr>
 
                 <tr>
-                  <td>
+                  <td><button className="btn btn-outline-primary">
                   <Link to={`/updateDrinks/${email}/${favFood}/${drinks.strDrink}/${favRecipe}`}>
                     Update
-                      </Link>
+                    </Link>
+
+                  </button>
+                 
                   </td>
                 </tr>
               </table>

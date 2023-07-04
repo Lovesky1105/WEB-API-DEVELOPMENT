@@ -42,14 +42,16 @@ function Recipe() {
     <ul>
         {records.map((recipes, index) => (
           <li key={index}>
-            <table>
-              <tr><td>{recipes.title}</td></tr>
-              <tr><td>{recipes.source_url}</td></tr>
+            <table className='table'>
+              <tr className="row"><td>{"Title : " + recipes.title}</td></tr>
+              <tr className="row"><td>{"resource link : " + recipes.source_url}</td></tr>
               <tr>
               <td>
+                <button className="btn btn-outline-primary">
                 <Link to={`/updateRecipe/${email}/${favFood}/${favDrinks}/${recipes.title}`}>
                   Update
                   </Link>
+                  </button>
               </td>
               </tr>
               </table>
